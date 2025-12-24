@@ -4,7 +4,7 @@ import time
 
 product = [{'link':"https://www.amazon.in/HARLEY-DAVIDSON-Motorcycle-Metallic-booking-Ex-Showroom/dp/B0FDGWRMMN/?_encoding=UTF8&ref_=pd_hp_d_btf_ls_gwc_pc_en4",'history':[]}]
 pricehistory = []
-interval = 5
+interval = 60*12
 
 def get_amazon_price(url):
     with sync_playwright() as p:
@@ -28,9 +28,10 @@ def get_amazon_price(url):
 
 def menu():
     print("-=====-Price Tracker-=====-")
-    print("1. Add to tracking list.")
-    print("2. View raw data.")
-    print("3. change interval of price query.")
+    print("1. view tracking list.")
+    print("2. Add to tracking list.")
+    print("3. View raw tracking data.")
+    print("4. change interval of price query.")
 
 
 def loop1():
@@ -44,14 +45,19 @@ t1 = threading.Thread(target=loop1).start()
 
 while True:
     menu()
-    i = int(input("\nChoose an Option"))
-    if(i==1):
+    i = input("\nChoose an Option")
+    if i=="1":
+        for i in product:
+            print(i["link"])
+    elif(i=="2"):
         link = str(input("\nEnter Your amazon Link:\n"))
         product.append({'link':link,'history':[]})
-    if(i==2):
+    elif(i=="3"):
         print(product)
-    if(i==3):
+    elif(i=="4"):
         inter = int(input(f"current interval: {interval}\nEnter your interval in seconds:"))
         if inter <= 3 or inter >=1000000:
             continue
         interval = inter
+    else:
+        print("Invalid Option")
