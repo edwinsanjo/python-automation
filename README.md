@@ -20,6 +20,7 @@ to use the program run the file organize_downloads.py
 before running this program please try reading the code and understand what it does because there is no way to revert the changes the program it does.
 
 # price-tracker
+a simple python program that checks amazon page for a product every n seconds and saves it in a json frinedly format.
 
 ## Dependencies
 ```bash
